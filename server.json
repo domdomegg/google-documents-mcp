@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
-  "name": "io.github.domdomegg/google-docs-mcp",
+  "name": "io.github.domdomegg/google-documents-mcp",
   "title": "Google Docs",
   "description": "Allow AI systems to read and edit Google Docs.",
-  "websiteUrl": "https://github.com/domdomegg/google-docs-mcp#readme",
+  "websiteUrl": "https://github.com/domdomegg/google-documents-mcp#readme",
   "repository": {
-    "url": "https://github.com/domdomegg/google-docs-mcp.git",
+    "url": "https://github.com/domdomegg/google-documents-mcp.git",
     "source": "github"
   },
   "version": "{{VERSION}}",
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "google-docs-mcp",
+      "identifier": "google-documents-mcp",
       "version": "{{VERSION}}",
       "runtimeHint": "npx",
       "environmentVariables": [
@@ -29,7 +29,7 @@
     },
     {
       "registryType": "npm",
-      "identifier": "google-docs-mcp",
+      "identifier": "google-documents-mcp",
       "version": "{{VERSION}}",
       "runtimeHint": "npx",
       "environmentVariables": [

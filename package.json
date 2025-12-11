@@ -1,19 +1,19 @@
 {
-  "name": "google-docs-mcp",
+  "name": "google-documents-mcp",
   "version": "0.0.1",
   "description": "MCP server for Google Docs - read and edit documents",
   "license": "MIT",
   "author": "Adam Jones (domdomegg)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/domdomegg/google-docs-mcp.git"
+    "url": "https://github.com/domdomegg/google-documents-mcp.git"
   },
   "main": "dist/main.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "mcpName": "io.github.domdomegg/google-docs-mcp",
+  "mcpName": "io.github.domdomegg/google-documents-mcp",
   "scripts": {
     "start": "npm run build && node ./dist/main.js",
     "start:http": "npm run build && MCP_TRANSPORT=http node ./dist/main.js",

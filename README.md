@@ -1,4 +1,4 @@
-# google-docs-mcp
+# google-documents-mcp
 
 MCP server for Google Docs - read and edit documents.
 
@@ -41,7 +41,7 @@ The server runs on `http://localhost:3000` by default. Change with `PORT=3001`.
 ### 3. Add to your MCP client
 
 ```bash
-claude mcp add --transport http google-docs-mcp http://localhost:3000/mcp
+claude mcp add --transport http google-documents-mcp http://localhost:3000/mcp
 ```
 
 ## Architecture
@@ -50,7 +50,7 @@ This server acts as an **OAuth proxy** to Google:
 
 ```mermaid
 graph LR
-    A[MCP client] <--> B[google-docs-mcp] <--> C[Google OAuth/API]
+    A[MCP client] <--> B[google-documents-mcp] <--> C[Google OAuth/API]
 ```
 
 1. Server advertises itself as an OAuth authorization server via `/.well-known/oauth-authorization-server`

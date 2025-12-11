@@ -43,7 +43,7 @@ const transport = process.env.MCP_TRANSPORT || 'stdio';
 	if (transport === 'stdio') {
 		const accessToken = process.env.GOOGLE_ACCESS_TOKEN;
 		if (!accessToken) {
-			console.error('google-docs-mcp: GOOGLE_ACCESS_TOKEN required for stdio transport');
+			console.error('google-documents-mcp: GOOGLE_ACCESS_TOKEN required for stdio transport');
 			console.error('For OAuth support, use HTTP transport: MCP_TRANSPORT=http');
 
 			process.exit(1);
@@ -57,7 +57,7 @@ const transport = process.env.MCP_TRANSPORT || 'stdio';
 		console.error('Google Docs MCP server running on stdio');
 	} else if (transport === 'http') {
 		if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
-			console.error('google-docs-mcp: GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET required for HTTP transport');
+			console.error('google-documents-mcp: GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET required for HTTP transport');
 
 			process.exit(1);
 		}
@@ -88,7 +88,7 @@ const transport = process.env.MCP_TRANSPORT || 'stdio';
 			authorization_servers: [baseUrl],
 			scopes_supported: DOCS_SCOPES,
 			resource_name: 'Google Docs MCP Server',
-			resource_documentation: 'https://github.com/domdomegg/google-docs-mcp',
+			resource_documentation: 'https://github.com/domdomegg/google-documents-mcp',
 		};
 
 		// Metadata endpoints
@@ -108,7 +108,7 @@ const transport = process.env.MCP_TRANSPORT || 'stdio';
 		app.post('/register', (req: Request<object, object, OAuthClientMetadata>, res) => {
 			const response: OAuthClientInformationFull = {
 				...req.body,
-				client_id: 'google-docs-mcp',
+				client_id: 'google-documents-mcp',
 				client_id_issued_at: Math.floor(Date.now() / 1000),
 			};
 			res.status(201).json(response);

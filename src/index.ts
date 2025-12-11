@@ -6,7 +6,7 @@ export type {Config} from './tools/index.js';
 
 export function createServer(config: Config): McpServer {
 	const server = new McpServer({
-		name: 'google-docs-mcp',
+		name: 'google-documents-mcp',
 		version: '1.0.0',
 	});
 
