@@ -3,13 +3,17 @@ import type {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import type {Config} from './types.js';
 import {makeDocsApiCall} from '../utils/docs-api.js';
 import {jsonResult} from '../utils/response.js';
+import {strictSchemaWithAliases} from '../utils/schema.js';
 
-const inputSchema = {
-	documentId: z.string().describe('The ID of the document'),
-	findText: z.string().describe('The text to search for'),
-	replaceText: z.string().describe('The text to replace matches with'),
-	matchCase: z.boolean().optional().default(false).describe('Whether the search should be case-sensitive'),
-};
+const inputSchema = strictSchemaWithAliases(
+	{
+		documentId: z.string().describe('The ID of the document'),
+		findText: z.string().describe('The text to search for'),
+		replaceText: z.string().describe('The text to replace matches with'),
+		matchCase: z.boolean().optional().default(false).describe('Whether the search should be case-sensitive'),
+	},
+	{},
+);
 
 const outputSchema = z.object({
 	documentId: z.string(),

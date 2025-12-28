@@ -3,13 +3,17 @@ import type {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import type {Config} from './types.js';
 import {makeDocsApiCall} from '../utils/docs-api.js';
 import {jsonResult} from '../utils/response.js';
+import {strictSchemaWithAliases} from '../utils/schema.js';
 
-const inputSchema = {
-	documentId: z.string().describe('The ID of the document to insert into'),
-	text: z.string().describe('The text to insert'),
-	index: z.number().describe('The zero-based index where to insert the text. Index 1 is the beginning of the document body (index 0 is reserved).'),
-	segmentId: z.string().optional().describe('The ID of the header, footer, or footnote to insert into. Leave empty for the main body.'),
-};
+const inputSchema = strictSchemaWithAliases(
+	{
+		documentId: z.string().describe('The ID of the document to insert into'),
+		text: z.string().describe('The text to insert'),
+		index: z.number().describe('The zero-based index where to insert the text. Index 1 is the beginning of the document body (index 0 is reserved).'),
+		segmentId: z.string().optional().describe('The ID of the header, footer, or footnote to insert into. Leave empty for the main body.'),
+	},
+	{},
+);
 
 const outputSchema = z.object({
 	documentId: z.string(),

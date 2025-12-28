@@ -3,11 +3,15 @@ import type {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import type {Config} from './types.js';
 import {makeDocsApiCall} from '../utils/docs-api.js';
 import {jsonResult} from '../utils/response.js';
+import {strictSchemaWithAliases} from '../utils/schema.js';
 
-const inputSchema = {
-	documentId: z.string().describe('The ID of the document to retrieve'),
-	suggestionsViewMode: z.enum(['DEFAULT_FOR_CURRENT_ACCESS', 'SUGGESTIONS_INLINE', 'PREVIEW_SUGGESTIONS_ACCEPTED', 'PREVIEW_WITHOUT_SUGGESTIONS']).optional().describe('The suggestions view mode to apply to the document'),
-};
+const inputSchema = strictSchemaWithAliases(
+	{
+		documentId: z.string().describe('The ID of the document to retrieve'),
+		suggestionsViewMode: z.enum(['DEFAULT_FOR_CURRENT_ACCESS', 'SUGGESTIONS_INLINE', 'PREVIEW_SUGGESTIONS_ACCEPTED', 'PREVIEW_WITHOUT_SUGGESTIONS']).optional().describe('The suggestions view mode to apply to the document'),
+	},
+	{},
+);
 
 // Recursive schema for document structure elements
 const textStyleSchema = z.object({
@@ -128,7 +132,7 @@ export function registerDocumentGetRaw(server: McpServer, config: Config): void 
 		'document_get_raw',
 		{
 			title: 'Get document (raw)',
-			description: 'Get the full raw JSON structure of a Google Doc, including all tabs, formatting, headers, footers, and styles. Warning: responses can be very large. Consider using jq to extract specific fields, or use document_get_text for plain text content.',
+			description: 'Get the full raw JSON structure of a Google Doc, including all tabs, formatting, headers, footers, and styles. Google Docs content is organized under tabs - body content is at tabs[].documentTab.body.content, not at the top level. Warning: responses can be very large. Consider using jq to extract specific fields, or use document_get_text for plain text content.',
 			inputSchema,
 			outputSchema,
 			annotations: {

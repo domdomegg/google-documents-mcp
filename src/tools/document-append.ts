@@ -3,11 +3,15 @@ import type {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import type {Config} from './types.js';
 import {makeDocsApiCall} from '../utils/docs-api.js';
 import {jsonResult} from '../utils/response.js';
+import {strictSchemaWithAliases} from '../utils/schema.js';
 
-const inputSchema = {
-	documentId: z.string().describe('The ID of the document to append to'),
-	text: z.string().describe('The text to append to the end of the document'),
-};
+const inputSchema = strictSchemaWithAliases(
+	{
+		documentId: z.string().describe('The ID of the document to append to'),
+		text: z.string().describe('The text to append to the end of the document'),
+	},
+	{},
+);
 
 const outputSchema = z.object({
 	documentId: z.string(),

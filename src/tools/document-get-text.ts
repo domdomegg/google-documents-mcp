@@ -3,10 +3,14 @@ import type {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import type {Config} from './types.js';
 import {makeDocsApiCall} from '../utils/docs-api.js';
 import {jsonResult} from '../utils/response.js';
+import {strictSchemaWithAliases} from '../utils/schema.js';
 
-const inputSchema = {
-	documentId: z.string().describe('The ID of the document to retrieve'),
-};
+const inputSchema = strictSchemaWithAliases(
+	{
+		documentId: z.string().describe('The ID of the document to retrieve'),
+	},
+	{},
+);
 
 const tabTextSchema = z.object({
 	tabId: z.string(),
@@ -69,7 +73,7 @@ export function registerDocumentGetText(server: McpServer, config: Config): void
 		'document_get_text',
 		{
 			title: 'Get document text',
-			description: 'Get the plain text content of a Google Doc without formatting, including all tabs. For very long documents, consider writing output to a file and reading specific sections.',
+			description: 'Get the plain text content of a Google Doc without formatting, including all tabs. Google Docs content is organized under tabs (at tabs[].documentTab.body.content in the raw API), but this tool extracts and flattens the text for you. For very long documents, consider writing output to a file and reading specific sections.',
 			inputSchema,
 			outputSchema,
 			annotations: {

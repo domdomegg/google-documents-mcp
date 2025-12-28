@@ -3,10 +3,14 @@ import type {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import type {Config} from './types.js';
 import {makeDocsApiCall} from '../utils/docs-api.js';
 import {jsonResult} from '../utils/response.js';
+import {strictSchemaWithAliases} from '../utils/schema.js';
 
-const inputSchema = {
-	title: z.string().describe('The title of the new document'),
-};
+const inputSchema = strictSchemaWithAliases(
+	{
+		title: z.string().describe('The title of the new document'),
+	},
+	{},
+);
 
 const outputSchema = z.object({
 	documentId: z.string(),
