@@ -213,6 +213,11 @@ export function registerDocumentBatchUpdate(server: McpServer, config: Config): 
 			description: 'Apply one or more updates to a Google Doc. Supports inserting/deleting text, find/replace, inserting images and tables, managing bullets, and more. All requests are applied atomically - if any fails, none are applied.',
 			inputSchema,
 			outputSchema,
+			annotations: {
+				readOnlyHint: false,
+				destructiveHint: true,
+				idempotentHint: false,
+			},
 		},
 		async ({documentId, requests}) => {
 			const result = await makeDocsApiCall('POST', `/documents/${documentId}:batchUpdate`, config.token, {requests});

@@ -32,6 +32,11 @@ export function registerDocumentReplace(server: McpServer, config: Config): void
 			description: 'Find and replace all occurrences of text in a Google Doc. Returns the number of replacements made.',
 			inputSchema,
 			outputSchema,
+			annotations: {
+				readOnlyHint: false,
+				destructiveHint: true,
+				idempotentHint: true,
+			},
 		},
 		async ({documentId, findText, replaceText, matchCase}) => {
 			const requests = [
