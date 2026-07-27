@@ -26,6 +26,11 @@ export function registerDocumentCreate(server: McpServer, config: Config): void 
 			description: 'Create a new blank Google Doc with the specified title.',
 			inputSchema,
 			outputSchema,
+			annotations: {
+				readOnlyHint: false,
+				destructiveHint: false,
+				idempotentHint: false,
+			},
 		},
 		async ({title}) => {
 			const result = await makeDocsApiCall('POST', '/documents', config.token, {title});

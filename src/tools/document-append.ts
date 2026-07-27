@@ -26,6 +26,11 @@ export function registerDocumentAppend(server: McpServer, config: Config): void 
 			description: 'Append text to the end of a Google Doc. This is a convenience wrapper around batch_update that inserts text at the end of the document body.',
 			inputSchema,
 			outputSchema,
+			annotations: {
+				readOnlyHint: false,
+				destructiveHint: false,
+				idempotentHint: false,
+			},
 		},
 		async ({documentId, text}) => {
 			const requests = [

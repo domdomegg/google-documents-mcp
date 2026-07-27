@@ -28,6 +28,11 @@ export function registerDocumentInsert(server: McpServer, config: Config): void 
 			description: 'Insert text at a specific location in a Google Doc. Use document_get to find the appropriate index. Index 1 is the beginning of the document body.',
 			inputSchema,
 			outputSchema,
+			annotations: {
+				readOnlyHint: false,
+				destructiveHint: false,
+				idempotentHint: false,
+			},
 		},
 		async ({documentId, text, index, segmentId}) => {
 			const location: {index: number; segmentId?: string} = {index};
